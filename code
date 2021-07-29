@@ -73,6 +73,7 @@ while True:
     while True:
         repeat = input('Would you like to run the program again? (y/n): ')
         if repeat == 'y':
+            numberCheck = False
             break
         elif repeat == 'n':
             print("Goodbye")
