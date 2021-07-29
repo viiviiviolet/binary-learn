@@ -1,9 +1,14 @@
+# importing for sleep function
+
+import time
+
 # initializing variables
 number = 0
 conversionfrom = ''
 conversionto = ''
 output = 0
 numberCheck = False
+running = True
 
 # function to check if integer is binary
 def checkbinary(inputint):
@@ -42,21 +47,36 @@ def convertdecimal(binary):
 
 
 # Loop for error checking
-while not numberCheck:
-    number = int(input("Enter an integer:"))
-    base = int(input("Is the integer\n1. Binary\n2. Decimal\n"))
-    if base == 1:
-        numberCheck = checkbinary(number)
-        output = convertdecimal(number)
-        conversionfrom = 'binary'
-        conversionto = "decimal"
-    elif base == 2:
-        numberCheck = True
-        output = convertbinary(number)
-        conversionfrom = 'decimal'
-        conversionto = 'binary'
-    else:
-        print('Invalid Input')
+while True:
+    while not numberCheck:
+        number = int(input("Enter an integer: "))
+        base = int(input("Is the integer\n1. Binary\n2. Decimal\n"))
+        if base == 1:
+            numberCheck = checkbinary(number)
+            output = convertdecimal(number)
+            conversionfrom = 'binary'
+            conversionto = "decimal"
+            if numberCheck == False:
+                print("Please enter a valid binary number.")
+        elif base == 2:
+            numberCheck = True
+            output = convertbinary(number)
+            conversionfrom = 'decimal'
+            conversionto = 'binary'
+        else:
+            print('Invalid Input')
 
-# formatted string for output
-print(f'The integer {number} converted from {conversionfrom} to {conversionto} is {output}.')
+    # formatted string for output
+    print(f'The integer {number} converted from {conversionfrom} to {conversionto} is {output}.')
+
+    # loop to repeat program
+    while True:
+        repeat = input('Would you like to run the program again? (y/n): ')
+        if repeat == 'y':
+            break
+        elif repeat == 'n':
+            print("Goodbye")
+            time.sleep(5.0)
+            quit()
+        else:
+            print("Please enter a valid input")
